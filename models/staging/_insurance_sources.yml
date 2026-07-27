@@ -1,10 +1,9 @@
-version: 2
 
 sources:
   - name: insurance_raw
     # UPDATE these two to match where your tables actually live in Snowflake
-    database: YOUR_DATABASE
-    schema: YOUR_SCHEMA
+    database: BASIC
+    schema: PUBLIC
     tables:
       - name: DIM_PRODUCT_INFO
         description: One row per insurance product / plan.
