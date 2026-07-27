@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
@@ -40,3 +41,30 @@ models:
     # Applies to all files under models/example/
     example:
       +materialized: table
+=======
+name: 'insurance_underwriting'
+version: '1.0.0'
+config-version: 2
+
+# This must match the profile name in your profiles.yml
+profile: 'insurance_underwriting'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  insurance_underwriting:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts
+>>>>>>> 7cae9e80e72335557d6f5f871490dcba4367b801
