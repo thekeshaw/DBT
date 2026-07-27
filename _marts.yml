@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: dim_insured_360
+    description: >
+      One row per insured person combining demographic, physical, employment,
+      insurance history, family history, and medical history attributes.
+    columns:
+      - name: insured_id
+        description: Primary key — one row per insured person.
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_applications
+    description: >
+      One row per submitted application: the underwriting response/outcome,
+      joined to product info, plus a count of flagged medical keywords.
+    columns:
+      - name: application_id
+        description: Primary key — one row per application.
+        tests:
+          - unique
+          - not_null
+      - name: insured_id
+        description: Foreign key to dim_insured_360.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_insured_360')
+              field: insured_id
+      - name: product_id
+        description: Foreign key to the product dimension.
+        tests:
+          - not_null
+      - name: medical_keyword_count
+        description: Number of medical keywords flagged for this application.
+        tests:
+          - not_null

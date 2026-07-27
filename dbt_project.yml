@@ -1,0 +1,25 @@
+name: 'insurance_underwriting'
+version: '1.0.0'
+config-version: 2
+
+# This must match the profile name in your profiles.yml
+profile: 'insurance_underwriting'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  insurance_underwriting:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts

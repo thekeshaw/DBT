@@ -1,0 +1,68 @@
+version: 2
+
+sources:
+  - name: insurance_raw
+    # UPDATE these two to match where your tables actually live in Snowflake
+    database: YOUR_DATABASE
+    schema: YOUR_SCHEMA
+    tables:
+      - name: DIM_PRODUCT_INFO
+        description: One row per insurance product / plan.
+        columns:
+          - name: PRODUCT_ID
+            description: Primary key for a product.
+            tests: [not_null, unique]
+
+      - name: DIM_PHYSICAL_ATTRIBUTES
+        description: Height, weight, BMI per insured person.
+        columns:
+          - name: INSURED_ID
+            tests: [not_null]
+
+      - name: DIM_EMPLOYMENT_INFO
+        description: Employment-related attributes per insured person.
+        columns:
+          - name: INSURED_ID
+            tests: [not_null]
+
+      - name: DIM_INSURED_INFO
+        description: Core demographic/profile info per insured person.
+        columns:
+          - name: INSURED_ID
+            description: Primary key for an insured person.
+            tests: [not_null, unique]
+
+      - name: DIM_INSURANCE_HISTORY
+        description: Prior insurance history attributes per insured person.
+        columns:
+          - name: INSURED_ID
+            tests: [not_null]
+
+      - name: DIM_FAMILY_HISTORY
+        description: Family medical/insurance history per insured person.
+        columns:
+          - name: INSURED_ID
+            tests: [not_null]
+
+      - name: DIM_MEDICAL_HISTORY
+        description: Medical history attributes per insured person.
+        columns:
+          - name: INSURED_ID
+            tests: [not_null]
+
+      - name: FCT_MEDICAL_KEYWORDS
+        description: Flags for medical keywords detected per application.
+        columns:
+          - name: APPLICATION_ID
+            tests: [not_null]
+
+      - name: FCT_APPLICATION_RESPONSE
+        description: One row per submitted application, including the underwriting response/outcome.
+        columns:
+          - name: APPLICATION_ID
+            description: Primary key for an application.
+            tests: [not_null, unique]
+          - name: INSURED_ID
+            tests: [not_null]
+          - name: PRODUCT_ID
+            tests: [not_null]
