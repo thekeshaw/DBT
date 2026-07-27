@@ -1,25 +1,22 @@
-name: 'insurance_underwriting'
+name: 'my_new_project'
 version: '1.0.0'
 config-version: 2
 
-# This must match the profile name in your profiles.yml
-profile: 'insurance_underwriting'
+profile: 'default'
 
 model-paths: ["models"]
-seed-paths: ["seeds"]
+analysis-paths: ["analyses"]
 test-paths: ["tests"]
+seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
 clean-targets:
   - "target"
   - "dbt_packages"
-
 models:
-  insurance_underwriting:
+  my_new_project:
     staging:
       +materialized: view
-      +schema: staging
     marts:
       +materialized: table
-      +schema: marts
